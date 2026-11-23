@@ -1,0 +1,522 @@
+/* Designsystem „Bei mir“
+   Tannengrün als Hauptfarbe, Lavendel und Koralle als Akzente,
+   Salbei als Grundfläche. Knöpfe und Karten mit Rahmen und versetztem Schatten. */
+:root {
+  --gruen: #1e3d33;
+  --gruen-hell: #2d5748;
+  --lavendel: #9c8cf0;
+  --lavendel-hell: #ddd6fb;
+  --koralle: #f08a8a;
+  --koralle-hell: #fbdcdc;
+  --salbei: #dde8e2;
+  --salbei-hell: #ecf3ef;
+  --papier: #fbfaf7;
+  --tinte: #14201b;
+  --weich: #5d6f67;
+  --akzent: #6a5ad6;
+  --linie: var(--gruen);
+  --radius: 22px;
+  --radius-s: 14px;
+  --font-text: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-weich: "Quicksand Variable", "Quicksand", var(--font-text);
+  --font-kopf: "Bricolage Grotesque Variable", "Bricolage Grotesque", var(--font-text);
+  /* Kachelfarben: je ein Grundton mit Verlauf, darauf schwarz-weiße Blumen */
+  --lila-hell: #a898f7;
+  --lila-mitte: #7a5cf2;
+  --lila-tief: #5a46c6;
+  --korall-hell: #fba99c;
+  --korall-mitte: #f0655c;
+  --korall-tief: #de5f5a;
+  --gruen-hell: #2f5b4c;
+  --gruen-tief: #15302a;
+  --kreme: #fbfaf7;
+  --kante: 1.5px solid var(--gruen);
+  --versatz: 4px 4px 0 var(--gruen);
+  --schatten: 0 4px 16px rgba(20, 32, 27, 0.08);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 92% 4%, rgba(138, 116, 236, 0.2) 0%, rgba(138, 116, 236, 0) 40%),
+    radial-gradient(circle at 4% 60%, rgba(240, 118, 110, 0.12) 0%, rgba(240, 118, 110, 0) 36%),
+    linear-gradient(180deg, #e6f1eb 0%, #dde8e2 55%, #d3e2da 100%);
+  background-attachment: fixed;
+  color: var(--tinte);
+  font-family: var(--font-text);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+:focus-visible { outline: 2.5px solid var(--akzent); outline-offset: 3px; border-radius: 6px; }
+
+main { padding: 30px 22px calc(120px + env(safe-area-inset-bottom)); }
+.page { max-width: 760px; margin: 0 auto; }
+
+/* Typografie */
+h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.3rem, 8vw, 3.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: var(--gruen);
+}
+h2, h3 { font-family: var(--font-kopf); font-weight: 700; letter-spacing: -0.01em; }
+.sub { font-family: var(--font-kopf); font-size: 1.22rem; font-weight: 700; margin: 34px 0 12px; color: var(--gruen); }
+.date { margin: 0 0 8px; color: var(--weich); font-size: 0.95rem; }
+.lead { margin: 14px 0 0; color: var(--weich); max-width: 54ch; }
+.muted { color: var(--weich); font-size: 0.92rem; }
+.eyebrow {
+  font-family: var(--font-text); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gruen);
+}
+.link { color: var(--akzent); font-weight: 500; }
+
+/* Knöpfe: Rahmen und versetzter Schatten */
+.pill {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
+  cursor: pointer; text-decoration: none;
+  background: var(--lavendel); color: var(--tinte);
+  border: var(--kante); border-radius: 999px; box-shadow: var(--versatz);
+  padding: 12px 22px; font: 600 0.95rem var(--font-text);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.pill:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--gruen); }
+.pill.ghost { background: var(--papier); }
+.pill.small { padding: 8px 15px; font-size: 0.88rem; box-shadow: 3px 3px 0 var(--gruen); }
+.pill.loeschen { background: var(--koralle); }
+.pill:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: var(--versatz); }
+.linkbtn { border: 0; background: none; padding: 0; color: var(--akzent); font: inherit; cursor: pointer; text-decoration: underline; }
+.voicebtn { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; }
+
+/* Hero mit Foto */
+.hero {
+  position: relative; display: block; overflow: hidden; margin: 22px 0 18px;
+  border: var(--kante); border-radius: 26px; box-shadow: var(--versatz);
+  color: #fff; text-decoration: none;
+}
+.hero-in {
+  position: relative; display: flex; flex-direction: column; gap: 10px; justify-content: flex-end;
+  min-height: 265px; padding: 24px;
+  background: none;
+  text-shadow: none;
+}
+.hero h2 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 2.2rem; line-height: 1.02; color: #fff; }
+.hero p, .hero .eyebrow { margin: 0; color: rgba(255, 255, 255, 0.9); }
+.hero .pill { background: var(--papier); }
+
+/* Fotos */
+.photo { position: absolute; inset: 0; overflow: hidden; background: var(--salbei); }
+.photo img {
+  width: 100.5%; height: 100.5%; object-fit: cover; object-position: center; display: block;
+  filter: brightness(1.02) saturate(1.3);
+}
+
+/* Kacheln */
+.grid { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); margin-top: 16px; }
+.tile {
+  position: relative; overflow: hidden; display: flex; flex-direction: column;
+  min-height: 200px; border: var(--kante); border-radius: var(--radius);
+  background: var(--papier); color: inherit; text-decoration: none; box-shadow: var(--versatz);
+}
+.tile.tall { min-height: 225px; }
+.tile.wide { grid-column: 1 / -1; min-height: 0; }
+.tile-in {
+  position: absolute; inset: 0; width: 100%; padding: 18px; color: #fff;
+  display: flex; flex-direction: column; justify-content: flex-start; gap: 6px;
+  background: linear-gradient(to bottom, rgba(20, 32, 27, 0.14) 0%, rgba(20, 32, 27, 0) 36%);
+  text-shadow: none;
+}
+.tile-in h2 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; line-height: 1.05; color: #fff; }
+.tile-in p, .tile-in .muted, .tile-in .eyebrow { margin: 0; color: rgba(255, 255, 255, 0.92); }
+
+/* Farbige Kachel ohne Foto, im Wechsel grün, koralle, lavendel */
+.plain {
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; gap: 5px; justify-content: flex-end;
+  min-height: 136px; padding: 18px;
+  border: var(--kante); border-radius: var(--radius); box-shadow: var(--versatz);
+  background: var(--papier); color: var(--tinte); text-decoration: none;
+}
+.plain h2 { margin: 0; font-size: 1.1rem; line-height: 1.25; color: inherit; }
+.plain p { margin: 0; }
+.plain .eyebrow { color: inherit; opacity: 0.72; }
+.grid > .plain:nth-child(3n + 1) { background: var(--gruen); color: #fff; }
+.grid > .plain:nth-child(3n + 1) .muted { color: rgba(255, 255, 255, 0.82); }
+.grid > .plain:nth-child(3n + 1) .eyebrow { color: #fff; opacity: 0.9; }
+.grid > .plain:nth-child(3n + 2) { background: var(--koralle-hell); }
+.grid > .plain:nth-child(3n + 3) { background: var(--lavendel-hell); }
+
+/* Breite Zeile mit Foto */
+.bar {
+  position: relative; overflow: hidden; display: block; min-height: 88px;
+  border: var(--kante); border-radius: var(--radius); box-shadow: var(--versatz);
+  color: #fff; text-decoration: none;
+}
+.bar-in {
+  position: absolute; inset: 0; display: flex; align-items: center; gap: 14px; padding: 0 20px;
+  background: none;
+}
+.bar-in strong { font-weight: 700; font-size: 1.05rem; }
+.bar-in .pfeil { margin-left: auto; font-size: 1.3rem; }
+.faves { display: grid; gap: 12px; grid-template-columns: 1fr; }
+
+/* Flache Karten */
+.card-flat {
+  display: block; margin-top: 20px; padding: 20px;
+  border: var(--kante); border-radius: var(--radius); background: var(--papier);
+  box-shadow: var(--versatz); color: inherit; text-decoration: none;
+}
+.card-flat p { margin: 6px 0 0; }
+.hinweiskarte { background: var(--koralle-hell); margin-bottom: 18px; }
+.hinweiskarte p { margin: 4px 0 0; }
+
+/* Impuls des Tages */
+.impuls-neutral {
+  position: relative; display: flex; flex-direction: column; gap: 10px;
+  margin: 0 0 22px; padding: 26px 24px 28px;
+  border: var(--kante); border-radius: 26px; background: var(--papier); box-shadow: var(--versatz);
+}
+.impuls-neutral p {
+  margin: 0; font-weight: 500; font-size: 1.12rem; line-height: 1.6; color: var(--tinte);
+  max-width: 44ch;
+}
+
+/* Eingaben */
+.q, .rate { border: 0; padding: 0; margin: 0 0 26px; }
+.q legend { padding: 0; margin-bottom: 12px; font-weight: 600; }
+.rate-head { display: flex; align-items: center; gap: 12px; padding: 0; margin-bottom: 12px; font-weight: 600; }
+.rate-icon {
+  display: grid; place-items: center; width: 42px; height: 42px; flex: none;
+  border: var(--kante); border-radius: 50%; background: var(--lavendel-hell); color: var(--gruen);
+}
+.segs {
+  display: flex; gap: 5px; padding: 5px;
+  border: var(--kante); border-radius: 999px; background: var(--papier);
+}
+.seg-cell {
+  flex: 1; height: 30px; min-width: 0; border: 0; border-radius: 999px;
+  background: var(--salbei); cursor: pointer; padding: 0;
+}
+.seg-cell.fill { background: var(--lavendel); }
+.seg-cell.edge { background: var(--gruen); }
+.scale { display: grid; grid-template-columns: repeat(10, 1fr); gap: 5px; }
+.scale-btn {
+  aspect-ratio: 1; min-width: 0; border: var(--kante); border-radius: 12px;
+  background: var(--papier); color: var(--gruen); font: 600 0.9rem var(--font-text); cursor: pointer;
+}
+.scale-btn.on { background: var(--gruen); color: var(--papier); }
+.ends { display: flex; justify-content: space-between; margin-top: 6px; font-size: 0.8rem; color: var(--weich); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 9px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  padding: 11px 17px; border: var(--kante); border-radius: 999px;
+  background: var(--papier); color: var(--tinte); font: 500 0.95rem var(--font-text);
+}
+.chip.on { background: var(--lavendel); font-weight: 600; box-shadow: 3px 3px 0 var(--gruen); }
+.chips.small { gap: 7px; margin-bottom: 10px; }
+.chips.small .chip { padding: 8px 14px; font-size: 0.88rem; }
+.chips.tiles .chip { flex: 1 1 calc(50% - 9px); justify-content: center; padding: 22px 14px; border-radius: var(--radius); }
+.swatch { width: 10px; height: 10px; border-radius: 50%; }
+
+.field { display: block; margin: 0 0 22px; font-weight: 600; }
+.field textarea, .textin {
+  display: block; width: 100%; margin-top: 10px; padding: 14px;
+  border: var(--kante); border-radius: var(--radius-s); background: var(--papier);
+  color: var(--tinte); font: 400 1rem var(--font-text); resize: vertical;
+}
+.sub-field { margin-top: -10px; font-weight: 400; }
+.actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 26px 0 12px; flex-wrap: wrap; }
+.actions.wrap { justify-content: flex-start; }
+.error { color: #9b1c1c; font-weight: 500; }
+.hinweis { color: var(--akzent); font-weight: 500; }
+
+/* Reiter und Umschalter */
+.tabs { display: flex; gap: 8px; margin: 20px 0 22px; flex-wrap: wrap; }
+.tab {
+  padding: 9px 17px; border: var(--kante); border-radius: 999px;
+  color: var(--tinte); background: var(--papier); text-decoration: none;
+  font: 500 0.93rem var(--font-text); cursor: pointer;
+}
+.tab.active, .tab[aria-current="page"] { background: var(--gruen); color: var(--papier); font-weight: 600; }
+.segmented {
+  display: inline-flex; margin: 20px 0 18px; padding: 5px; gap: 5px;
+  border: var(--kante); border-radius: 999px; background: var(--papier);
+}
+.seg { border: 0; border-radius: 999px; padding: 10px 20px; background: transparent; color: var(--weich); font: 600 0.93rem var(--font-text); cursor: pointer; }
+.seg.on { background: var(--gruen); color: var(--papier); }
+.disclosure {
+  display: block; width: 100%; margin: 14px 0 10px; padding: 16px 20px; text-align: left; cursor: pointer;
+  border: var(--kante); border-radius: var(--radius-s); background: var(--papier);
+  color: var(--tinte); font: 600 1rem var(--font-text); box-shadow: var(--versatz);
+}
+.supportspace { height: 18px; }
+
+/* Listen, Fortschritt, Diagramme */
+.progress { height: 12px; border: var(--kante); border-radius: 999px; background: var(--papier); overflow: hidden; margin: 12px 0 6px; }
+.progress span { display: block; height: 100%; background: var(--lavendel); }
+.arealist { list-style: none; margin: 0; padding: 0; }
+.arealist li { display: flex; justify-content: space-between; gap: 12px; padding: 13px 0; border-bottom: 1px solid rgba(30, 61, 51, 0.16); }
+.notelist { list-style: none; margin: 10px 0 0; padding: 0; }
+.notelist li { padding: 14px 0; border-bottom: 1px solid rgba(30, 61, 51, 0.16); }
+.notelist p { margin: 0 0 4px; }
+.steps { padding-left: 1.3rem; }
+.steps li { margin-bottom: 10px; }
+.ideas { margin: 8px 0 0; padding-left: 1.2rem; }
+.ideas li { margin-bottom: 8px; }
+.overview { list-style: decimal; margin: 6px 0 0; padding-left: 1.3rem; }
+.overview li { margin-bottom: 10px; }
+.impulsarea { margin-bottom: 8px; }
+.insight { padding: 14px 0; border-bottom: 1px solid rgba(30, 61, 51, 0.16); }
+.insight h3 { margin: 0 0 4px; font-size: 1.15rem; }
+.insight p { margin: 5px 0; }
+.wheelarea { margin-bottom: 10px; }
+.today-line { margin: 0 0 18px; color: var(--weich); }
+.weeknav { display: flex; justify-content: space-between; align-items: center; margin: 0 0 20px; }
+
+.statrow { display: flex; gap: 12px; flex-wrap: wrap; margin: 6px 0 24px; }
+.stat {
+  flex: 1 1 120px; display: flex; flex-direction: column; gap: 2px; padding: 16px;
+  border: var(--kante); border-radius: var(--radius-s); background: var(--papier);
+}
+.stat:nth-child(2) { background: var(--koralle-hell); }
+.stat:nth-child(3) { background: var(--lavendel-hell); }
+.stat-label { font-size: 0.86rem; color: var(--weich); }
+.stat-value { font-family: var(--font-display); font-weight: 400; font-size: 2.1rem; line-height: 1.05; color: var(--gruen); }
+.stat-max { font-size: 0.9rem; color: var(--weich); }
+.bars { margin: 0 0 16px; }
+.bars figcaption { font-weight: 600; margin-bottom: 6px; }
+.bars svg { width: 100%; max-width: 430px; height: auto; }
+.radar { width: 100%; height: auto; max-width: 540px; display: block; margin: 10px auto 0; }
+
+/* Routineschritt */
+.stepcard {
+  position: relative; overflow: hidden; margin: 18px 0 22px;
+  border: var(--kante); border-radius: 26px; box-shadow: var(--versatz);
+  display: flex; flex-direction: column;
+}
+/* Foto oben als Band, Text darunter auf einer eigenen Farbfläche */
+.stepcard > .photo, .stepcard > .floral { position: relative; inset: auto; height: 170px; flex: none; }
+.stepcard-in {
+  position: relative; display: flex; flex-direction: column; gap: 8px; justify-content: flex-start;
+  padding: 22px 24px 26px; color: #fff;
+  background: linear-gradient(155deg, var(--lila-hell) 0%, var(--lila-mitte) 55%, var(--lila-tief) 100%);
+}
+.stepcard-in h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.9rem, 6vw, 2.4rem); color: #fff; }
+.stepcard-in p, .stepcard-in .muted, .stepcard-in .eyebrow, .stepcard-in .overview li { margin: 0; color: rgba(255, 255, 255, 0.9); }
+.stepbody { margin-bottom: 8px; }
+.impulsfrage { font-weight: 600; font-size: 1.12rem; line-height: 1.55; margin: 12px 0 16px; color: var(--gruen); }
+
+/* Timer */
+.timer {
+  margin: 24px 0 10px; padding: 24px; text-align: center;
+  border: var(--kante); border-radius: var(--radius); background: var(--lavendel-hell); box-shadow: var(--versatz);
+}
+.timer-time { font-family: var(--font-display); font-weight: 400; font-size: 3.4rem; line-height: 1; color: var(--gruen); }
+.timer .actions { justify-content: center; gap: 12px; margin: 16px 0 0; }
+
+/* Video und Medien */
+.videowrap {
+  position: relative; overflow: hidden; margin: 0 0 20px;
+  border: var(--kante); border-radius: 24px; box-shadow: var(--versatz);
+  aspect-ratio: 9 / 16; max-height: 58vh;
+}
+.video { display: block; width: 100%; height: 100%; object-fit: cover; border: 0; }
+iframe.video { aspect-ratio: 16 / 9; height: auto; }
+.videolabel { position: absolute; inset: auto 0 0 0; padding: 20px; color: #fff; background: linear-gradient(to top, rgba(20, 32, 27, 0.8), rgba(20, 32, 27, 0)); }
+.videonote { margin: 10px 0 18px; }
+.medien { margin: 16px 0 8px; }
+.medien .muted { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+.spotify { width: 100%; height: 152px; border: var(--kante); border-radius: 14px; display: block; }
+
+/* Erkenntnis, Zuspruch, Rückfrage */
+.insightbox {
+  margin: 18px 0 6px; padding: 20px;
+  border: var(--kante); border-radius: var(--radius); background: var(--papier); box-shadow: var(--versatz);
+}
+.insightbox .sub { margin-top: 0; }
+.insightbox .field { margin-bottom: 10px; }
+.insightbox .field textarea { background: var(--salbei-hell); }
+.zuspruch {
+  margin: 22px 0 6px; padding: 22px;
+  border: var(--kante); border-radius: var(--radius); background: var(--koralle-hell); box-shadow: var(--versatz);
+  font-weight: 600; font-size: 1.12rem; line-height: 1.55; color: var(--gruen);
+}
+.rueckfrage { margin: 16px 0 6px; font-weight: 500; font-size: 1.05rem; line-height: 1.55; color: var(--weich); }
+
+/* Navigation */
+.brand { display: none; }
+.nav {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+  display: flex; justify-content: space-around;
+  background: var(--papier); border-top: var(--kante);
+  padding: 10px 2px calc(10px + env(safe-area-inset-bottom));
+}
+.nav a {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 7px 15px; border-radius: 999px; font-size: 0.72rem; font-weight: 600;
+  color: var(--weich); text-decoration: none; border: 1.5px solid transparent;
+}
+.nav a[aria-current="page"] { color: var(--gruen); background: var(--lavendel-hell); border-color: var(--gruen); }
+
+@media (min-width: 900px) {
+  main { margin-left: 250px; padding: 52px 56px; }
+  .screen-gruen { margin: -52px -56px 0; padding: 52px 56px 56px; border-radius: 0; }
+  .nav {
+    top: 0; right: auto; bottom: 0; width: 250px;
+    flex-direction: column; justify-content: flex-start; gap: 8px;
+    border-top: 0; border-right: var(--kante); padding: 36px 18px;
+  }
+  .brand { display: block; font-family: var(--font-display); font-weight: 400; font-size: 2rem; color: var(--gruen); margin: 0 14px 28px; }
+  .nav a { flex-direction: row; gap: 14px; padding: 12px 16px; font-size: 1rem; border-radius: var(--radius-s); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill { transition: none; }
+}
+
+/* Zierformen */
+.deko { display: inline-block; vertical-align: baseline; }
+.gruss-funkeln { color: var(--lavendel); margin-left: 8px; vertical-align: 0.35em; }
+.impuls-schwung { align-self: flex-end; color: var(--koralle); margin-top: -2px; }
+
+/* Vorschlag für heute */
+.vorschlag {
+  display: flex; flex-direction: column; gap: 6px;
+  margin: 0 0 20px; padding: 22px;
+  border: var(--kante); border-radius: var(--radius);
+  background: var(--lavendel-hell); box-shadow: var(--versatz);
+}
+.vorschlag h2 { margin: 2px 0 0; font-size: 1.3rem; line-height: 1.2; color: var(--gruen); }
+.vorschlag p { margin: 0; color: var(--weich); }
+.vorschlag-optionen { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+
+/* Checkliste */
+.checkliste { margin: 0 0 6px; }
+.checkliste-kopf { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.checkliste-kopf .sub { margin-bottom: 10px; }
+.hakenliste { list-style: none; margin: 0 0 10px; padding: 0; }
+.hakenliste li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.haken {
+  flex: 1; display: flex; align-items: center; gap: 14px; cursor: pointer; text-align: left;
+  padding: 14px 18px; border: var(--kante); border-radius: var(--radius-s);
+  background: var(--papier); color: var(--tinte); font: 500 1rem var(--font-text);
+}
+.haken .kasten {
+  width: 24px; height: 24px; flex: none; display: grid; place-items: center;
+  border: var(--kante); border-radius: 7px; background: var(--salbei-hell); color: var(--gruen);
+}
+.haken.an { background: var(--lavendel-hell); }
+.haken.an .kasten { background: var(--lavendel); }
+.haken.an span:last-child { text-decoration: line-through; opacity: 0.65; }
+.weg {
+  flex: none; display: grid; place-items: center; width: 38px; height: 38px; cursor: pointer;
+  border: var(--kante); border-radius: 50%; background: var(--koralle-hell); color: var(--gruen);
+}
+.neuzeile { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
+.neuzeile .textin { margin-top: 0; }
+
+/* Florale Zierformen */
+.zweig-ecke {
+  position: absolute; right: -22px; top: -18px; color: var(--gruen);
+  opacity: 0.14; pointer-events: none;
+}
+.impuls-neutral { overflow: hidden; }
+.bluete-impuls { align-self: flex-start; color: var(--koralle); margin-bottom: -2px; }
+.halme-fuss { display: block; margin: 4px auto 0; color: var(--gruen); opacity: 0.3; }
+.bluete-titel { color: var(--koralle); margin-left: 10px; vertical-align: -0.12em; }
+.vorschlag { position: relative; overflow: hidden; }
+.vorschlag .zweig-ecke { color: var(--akzent); opacity: 0.18; }
+.checkliste-kopf .sub { display: flex; align-items: center; }
+
+/* Gezeichnete Blumenbilder: Farbverlauf als Grund, Blumen schwarz-weiß */
+.floral { position: absolute; inset: 0; overflow: hidden; }
+.floral svg { width: 100%; height: 100%; display: block; }
+.floral.ton-lila { background: linear-gradient(155deg, var(--lila-hell) 0%, var(--lila-mitte) 52%, var(--lila-tief) 100%); }
+.floral.ton-gruen { background: linear-gradient(155deg, var(--gruen-hell) 0%, var(--gruen) 55%, var(--gruen-tief) 100%); }
+.floral.ton-koralle { background: linear-gradient(155deg, var(--korall-hell) 0%, var(--korall-mitte) 55%, var(--korall-tief) 100%); }
+
+/* Schmale Zeilen: Blumen nur im rechten Teil, damit der Text frei bleibt */
+.bar .floral { left: 42%; }
+
+/* Übungen bei Support: eine Spalte, damit die Blumen den Text nicht überdecken */
+.support-liste { grid-template-columns: 1fr; }
+.support-liste .tile { min-height: 150px; }
+.support-liste .photo img { object-position: 85% center; }
+
+/* Heute: hellgrüne Seite mit sanftem Verlauf und zarten Farbflächen */
+.screen-gruen {
+  position: relative; isolation: isolate;
+  margin: -30px -22px 0; padding: 40px 22px 44px; min-height: 100vh;
+  color: var(--tinte); border-radius: 0 0 36px 36px;
+  background:
+    radial-gradient(circle at 92% 6%, rgba(138, 116, 236, 0.22) 0%, rgba(138, 116, 236, 0) 42%),
+    radial-gradient(circle at 4% 52%, rgba(240, 118, 110, 0.14) 0%, rgba(240, 118, 110, 0) 38%),
+    linear-gradient(180deg, #e6f1eb 0%, #dde8e2 55%, #d3e2da 100%);
+}
+.screen-gruen .date, .screen-gruen .today-line, .screen-gruen .muted { color: var(--weich); }
+.screen-gruen .date .link { color: var(--akzent); }
+.screen-gruen .sub { color: var(--gruen); }
+.screen-gruen .insightbox .sub, .screen-gruen .card-flat .sub { color: var(--gruen); }
+.screen-gruen .eyebrow { color: var(--gruen); }
+.screen-gruen .zweig-ecke, .screen-gruen .halme-fuss { color: var(--gruen); opacity: 0.3; }
+.screen-gruen .impuls-neutral .zweig-ecke { color: var(--gruen); opacity: 0.14; }
+.screen-gruen .impuls-neutral .eyebrow { color: var(--gruen); }
+.screen-gruen .today-line strong { color: var(--gruen); }
+
+/* Begrüßung im Stil der Vorlage: Antiqua oben, kursiver Name mit Verlauf */
+.screen-gruen .gruss { margin: 6px 0 22px; }
+.screen-gruen .gruss-teil {
+  display: block; font-family: var(--font-kopf); font-weight: 600; font-size: clamp(1.45rem, 6vw, 1.85rem);
+  line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 4px;
+  background: linear-gradient(96deg, var(--gruen) 0%, var(--lila-tief) 45%, var(--korall-mitte) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+@supports not (background-clip: text) { .screen-gruen .gruss-teil { color: var(--gruen); } }
+.screen-gruen .gruss-name {
+  position: relative; display: inline-block; margin: 0 0 0 0.12em; font-style: italic;
+  font-family: var(--font-display); font-size: clamp(2.3rem, 8.5vw, 3rem); line-height: 1.02;
+  background: linear-gradient(96deg, var(--lila-mitte) 0%, var(--lila-tief) 42%, var(--korall-mitte) 92%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+@supports not (background-clip: text) { .screen-gruen .gruss-name { color: var(--lila-mitte); } }
+.screen-gruen .gruss-name .bluete-titel { color: var(--korall-mitte); margin-left: 6px; vertical-align: 0.1em; }
+.screen-gruen .gruss-schwung { display: block; margin: -6px 0 0 0.4em; color: var(--lila-mitte); }
+
+.screen-gruen .hero, .screen-gruen .tile, .screen-gruen .bar, .screen-gruen .impuls-neutral { box-shadow: 4px 4px 0 rgba(20, 50, 42, 0.35); }
+
+/* Begrüßung: zweite Zeile kursiv mit Farbverlauf */
+.gruss { display: flex; flex-direction: column; margin-bottom: 4px; }
+.gruss-teil { display: block; }
+.gruss-name {
+  display: block; font-style: italic; margin-top: -0.12em; margin-left: 0.38em;
+  font-size: 1.08em;
+  background: linear-gradient(96deg, #2d5748 0%, var(--akzent) 38%, var(--koralle) 88%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+@supports not (background-clip: text) { .gruss-name { color: var(--akzent); } }
+.gruss-name .bluete-titel { color: var(--koralle); margin-left: 12px; vertical-align: -0.1em; }
+
+/* Gefühle bei Support: Kacheln mit Foto, die gewählte mit Rahmen */
+.state-grid { grid-template-columns: 1fr 1fr; margin-top: 4px; }
+.state-tile { min-height: 124px; padding: 0; font: inherit; text-align: left; color: #fff; cursor: pointer; }
+.state-tile .tile-in h2 { font-size: 1.4rem; }
+.state-tile[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--papier), 0 0 0 6px var(--gruen); }
+
+/* Überschriften im Begrüßungsstil: Verlauf im Text */
+h1:not(.gruss) {
+  background: linear-gradient(96deg, var(--gruen) 0%, var(--lila-tief) 48%, var(--korall-mitte) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  padding-bottom: 0.06em;
+}
+@supports not (background-clip: text) { h1:not(.gruss) { color: var(--gruen); } }
+.stepcard-in h1 { background: none; color: #fff; -webkit-text-fill-color: #fff; }
+
+/* Fotos auf Kacheln: Blumen ganz nach rechts, Schrift links frei */
+.tile .photo img { object-position: 94% center; }
